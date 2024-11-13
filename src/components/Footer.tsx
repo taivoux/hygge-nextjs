@@ -7,17 +7,17 @@ import '../../src/SCSS/components/footer.scss'
 const Footer = () => {
   return (
     <footer className="footer">
-			<div className="container">
+			<div className="footer__container">
 				<div className="wrap block">
           {/* column 1 */}
-					<div className="wrap column 1">
-						<div className="logo container">
+					<div className="footer__wrap">
+						<div className="footer__logo">
 							<a href="https://hyggegocbepnho.vn/">
 								<img src="../logo.png" alt="" width={120} height={73}/>
 							</a>
 						</div>
 						<h5>HYGGE- GÓC BẾP NHỎ</h5>
-						<ul>
+						<ul className="footer__list">
               <li>Công ty TNHH Hygge F&B Services</li>
               <li>Địa chỉ: 69/3 Cao Thắng, P3, Q3, Tp.HCM</li>
               <li>Hotline đặt tiệc: 0934.007.402</li>
@@ -27,9 +27,10 @@ const Footer = () => {
             </ul>
 					</div>
           {/* column 2 */}
-          <div>
+          <div className="footer__wrap">
+            <div className="footer__buffer" aria-hidden="true"></div>
             <h5>ĐIỀU KHOẢN CHUNG</h5>
-            <ul>
+            <ul className="footer__list">
               <li>Chính sách quy định chung</li>
               <li>Quy định hình thức thanh toán</li>
               <li>Chính sách vận chuyển giao hàng</li>
@@ -37,17 +38,19 @@ const Footer = () => {
             </ul>
           </div>
           {/* column 3 */}
-          <div>
+          <div className="footer__wrap">
+            <div className="footer__buffer" aria-hidden="true"></div>
             <h5>THEO DÕI CHÚNG TÔI TẠI</h5>
-            <ul>
-              <li>
+            <ul className="social__list">
+              <li className="social__logo">
                 <a href="https://www.facebook.com/hygge.gocbepnho"><FaFacebook /></a>
               </li>
-              <li>
+              <li className="social__logo">
                 <a href="https://www.facebook.com/hygge.gocbepnho"><FaYoutube /></a>
               </li>
             </ul>
           </div>
+          {/* copyright */}
           <hr />
           <div>
             <p>© Copyright 2024 Hygge. All rights reserved.</p>

@@ -4,4 +4,29 @@
 
 .footer {
     color: variables.$color__white;
+    &__list {
+        list-style: disc;
+        list-style-position: inside;
+    }
+    &__container {
+        padding: 3% 2%;
+    }
+    &__wrap {
+        padding: 16px;
+    }
+    &__logo {
+        margin-block-start: 0;
+    }
+    &__buffer {
+        height: 60px;
+    }
+}
+
+.social {
+    &__list {
+        
+    }
+    &__logo {
+        display: inline-block;
+    }
 }
