@@ -48,6 +48,10 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          <hr />
+          <div>
+            <p>© Copyright 2024 Hygge. All rights reserved.</p>
+          </div>
 				</div>
 			</div>
 
