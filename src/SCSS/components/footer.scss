@@ -23,10 +23,29 @@
 }
 
 .social {
-    &__list {
-        
+    &__list{
+        gap: 1em;
+        display: flex;
+        padding-inline-start: 18px;   
+    }
+    &__item {
+        background-color: variables.$color__white;
+        color: variables.$color__black;
+        padding: 8px;
+        border-radius: 50%;
     }
     &__logo {
-        display: inline-block;
+        height: 20px;
+        width: 20px;
+    }
+}
+
+.copyright {
+    &__container {
+        text-align: center;
+        padding: 15px 0 0 16px;
+    }
+    &__separator {
+        border-top: 2px solid;
     }
 }
