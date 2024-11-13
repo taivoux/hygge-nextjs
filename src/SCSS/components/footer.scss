@@ -1,0 +1,7 @@
+@use "../abstract/mixins";
+@use "../abstract/variables";
+@use "../base/typography";
+
+.footer {
+    color: variables.$color__white;
+}
