@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="footer">
 			<div className="footer__container">
-				<div className="wrap block">
+				<div className="footer__block md:grid-cols-3">
           {/* column 1 */}
 					<div className="footer__wrap">
 						<div className="footer__logo">
@@ -53,14 +53,14 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
-          {/* copyright */}
-          <hr className="copyright__separator"/>
-          <div className="copyright__container">
-            <p>© Copyright 2024 Hygge. All rights reserved.</p>
-          </div>
-				</div>
-			</div>
+				  </div>
+			  </div>
+      </div>
+      {/* copyright */}
+      <hr className="copyright__separator"/>
+      <div className="copyright__container">
+        <p>© Copyright 2024 Hygge. All rights reserved.</p>
+      </div>
     </footer>
   )
 }

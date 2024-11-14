@@ -1,2 +1,22 @@
 @use './variables';
 
+@mixin center {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+//Mixin for screen sizes:
+// medium devices
+@mixin md {
+  @media (min-width: variables.$screen-md) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xxl {
+  @media (min-width: variables.$screen-xxl) {
+    @content;
+  }
+}
+
