@@ -43,12 +43,12 @@ const Footer = () => {
             <h5>THEO DÕI CHÚNG TÔI TẠI</h5>
             <ul className="social__list">
               <li className="social__item">
-                <a className="social__link" href="https://www.facebook.com/hygge.gocbepnho">
+                <a href="https://www.facebook.com/hygge.gocbepnho">
                   <FaFacebook className="social__logo"/>
                 </a>
               </li>
               <li className="social__item">
-                <a className="social__link" href="https://www.facebook.com/hygge.gocbepnho">
+                <a href="https://www.facebook.com/hygge.gocbepnho">
                   <FaYoutube className="social__logo"/>
                 </a>
               </li>
