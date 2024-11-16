@@ -1,0 +1,77 @@
+@use "../abstract/mixins";
+@use "../abstract/variables";
+@use "../base/typography";
+
+.footer {
+	color: variables.$color__white;
+  &__list {
+		list-style: disc;
+		list-style-position: inside;
+	}
+	&__container {
+		padding: 3% 0 0 2%;	
+	}
+	&__wrap {
+		padding: 16px;
+		@include mixins.xxl {
+			flex-basis: 33%;
+		}
+		@include mixins.md {
+			flex-basis: 33%;
+		}
+	}
+	&__logo {
+		margin-block-start: 0;
+	}
+	&__buffer {
+		height: 60px;
+	}
+	&__block{
+		@include mixins.xxl {
+			display: flex;
+			@include mixins.center;
+			max-width: 88%;
+		}
+		@include mixins.md {
+			display: flex;
+			@include mixins.center;
+		}
+	}
+}
+
+.social {
+  &__list{
+	gap: 1em;
+	display: flex;
+	padding-inline-start: 18px;   
+	}
+	&__item {
+		background-color: variables.$color__white;
+		color: variables.$color__black;
+		padding: 8px;
+		border-radius: 50%;
+		transition: all 0.2s;
+	}
+	&__item:hover {
+		transform: scale(1.2);
+	}
+	&__logo {
+		height: 20px;
+		width: 20px;
+	}
+}
+
+.copyright {
+  &__container {
+		text-align: center;
+		padding: 2.5% 0 2.5% 2.5%;
+}
+	&__separator {
+		border-top: 2px solid;
+		max-width: 95%;
+		@include mixins.center;
+		@include mixins.xxl {
+			max-width: 84%;
+		}
+	}
+}
