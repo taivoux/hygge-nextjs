@@ -2,17 +2,6 @@ import { useEffect, useState } from 'react';
 import WeekdayList from './Weekday'
 
 export default function MenuDays() {
-    //const currentTime = Date().toLocaleString();
-    //console.log(currentTime);
-    // const Map<int, String> weekdayName = {
-    //     1: "Thứ Hai",
-    //     2: "Thứ Ba",
-    //     3: "Thứ Tư",
-    //     4: "Thứ Năm",
-    //     5: "Thứ Sáu",
-    //     6: "Thứ Bảy",
-    //     7: "Chủ Nhật"
-    //   };
   // State to track if the current time is past 21:00
   const [isAfter9PM, setIsAfter9PM] = useState(false);
 
@@ -44,7 +33,7 @@ export default function MenuDays() {
   return (
     <div>
       <p>{isAfter9PM ? "After 9PM" : "Before 9PM)"}</p>
-      <WeekdayList />
+      <WeekdayList/>
     </div>
   );
 }

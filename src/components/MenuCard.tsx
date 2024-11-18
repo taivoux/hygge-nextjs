@@ -1,73 +1,104 @@
+import { useState, useEffect } from "react";
 import React from 'react'
+import { Badge } from "@/components/ui/badge"
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+} from "@/components/ui/tabs"
+import { Skeleton } from "./ui/skeleton";
+import BtnQuantity from "./BtnQuantity";
 
-const MenuCard = () => {
+
+type MenuDay = {
+    menu_id: number,
+    name: string,
+    name_english: string,
+    date: string,
+    is_vegetarian: boolean,
+    is_lunch: boolean,
+    calo_balance: string,
+    calo_fatloss: string,
+    calo_muscle: string,
+    created_at: string,
+    modified_at: string,
+    deleted_at: string | null
+}
+  
+
+interface MenuProps {
+    menuDate: string;
+}
+
+const MenuCard = ({menuDate} : MenuProps) => {
+    //console.log(menu);
+    const [menuData, setMenuData] = useState<MenuDay[] | null> (null);
+    useEffect(() => {
+        async function fetchMenuData() {
+            try {
+                const link = `http://localhost:3000/api/menu/${menuDate}`
+                const response = await fetch(link);
+                const data : MenuDay[] = await response.json();
+                //console.log(data)
+                setMenuData(data); // Directly set the fetched data
+            } catch (error) {
+                console.error(`Failed to fetch menu for date ${menuDate}`, error);
+            }
+        }
+    
+        if (menuDate) fetchMenuData();
+      }, [menuDate] ); // Include menuDate as a dependency
+
     return (
-        <div className='flex pt-[16px] pr-[16px] pb-[16px] pl-[16px] flex-col gap-[24px] justify-center items-start grow shrink-0 basis-0 flex-nowrap bg-[#fff] rounded-[8px] border-solid border border-[#d9d9d9] relative overflow-hidden z-[54]'>
-            <div className='flex flex-col gap-[4px] items-start self-stretch shrink-0 flex-nowrap relative z-[55]'>
-                <span className="h-[28px] self-stretch shrink-0 basis-auto font-['Manrope'] text-[18px] font-bold leading-[28px] text-[#1e1e1e] relative text-left whitespace-nowrap z-[56]">
-                    Bún đùi gà quay thảo mộc
-                </span>
-                <span className="h-[20px] self-stretch shrink-0 basis-auto font-['Manrope'] text-[14px] font-normal leading-[20px] text-[#414141] relative text-left whitespace-nowrap z-[57]">
-                    Rice vermicelli with roasted chicken and herbs
-                </span>
-            </div>
-            <div className='flex flex-col gap-[8px] items-start self-stretch shrink-0 flex-nowrap relative z-[58]'>
-                <Select >
-                    <SelectTrigger className="w-[534px] h-[48px]">
-                        <SelectValue placeholder="Gói Balance" />
-                    </SelectTrigger>
-                    <SelectContent>
-                            <SelectItem value="1">Gói Balance</SelectItem>
-                            <SelectItem value="2">Gói Fatloss</SelectItem>
-                            <SelectItem value="3">Gói Muscle Gain</SelectItem>
-                    </SelectContent>
-                </Select>
-                <div className='flex pt-[4px] pr-0 pb-[4px] pl-[10px] flex-col gap-[8px] justify-center items-center self-stretch shrink-0 flex-nowrap bg-[#f4f4f4] rounded-[2px] border-solid border-l-2 border-l-[#000] relative z-[64]'>
-                    <div className='flex flex-col gap-[2px] justify-center items-center self-stretch shrink-0 flex-nowrap relative z-[65]'>
-                        <span className="h-[20px] self-stretch shrink-0 basis-auto font-['Manrope'] text-[14px] font-normal leading-[20px] text-[#414141] relative text-left whitespace-nowrap z-[66]">
-                            Thông tin calorie
-                        </span>
-                        <span className="h-[20px] self-stretch shrink-0 basis-auto font-['Manrope'] text-[14px] font-bold leading-[20px] text-[#414141] relative text-left whitespace-nowrap z-[67]">
-                            45gr : 22gr : 20gr | 448kcal
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div className='flex gap-[144px] items-center self-stretch shrink-0 flex-nowrap relative z-[68]'>
-                <div className='flex w-[176px] gap-[8px] items-start shrink-0 flex-nowrap relative z-[69]'>
-                    <div className='flex w-[48px] h-[48px] pt-[12px] pr-[24px] pb-[12px] pl-[24px] gap-[8px] justify-center items-center shrink-0 flex-nowrap bg-[#fff] rounded-[8px] border-solid border border-[#d9d9d9] relative overflow-hidden z-[70]'>
-                        <div className='flex w-[20px] h-[20px] justify-center items-center shrink-0 flex-nowrap relative z-[71]'>
-                            <span className="flex w-[16px] h-[16px] justify-center items-center shrink-0 basis-auto font-['Font_Awesome_6_Pro'] text-[16px] font-black leading-[16px] text-[#333333] relative text-center whitespace-nowrap z-[72]">
-                                -
-                            </span>
-                        </div>
-                    </div>
-                    <button className='flex w-[64px] h-[48px] flex-col gap-[4px] items-center shrink-0 flex-nowrap border-none relative z-[73] pointer'>
-                        <div className='flex pt-[12px] pr-[16px] pb-[12px] pl-[16px] justify-center items-center self-stretch grow shrink-0 basis-0 flex-nowrap bg-[#fff] rounded-[8px] border-solid border border-[#d9d9d9] relative overflow-hidden z-[74]'>
-                            <div className="w-[8px] shrink-0 font-['Manrope'] text-[16px] font-normal leading-[16px] relative text-center whitespace-nowrap z-[75]">
-                                <span className="font-['Manrope'] text-[16px] font-bold leading-[24px] text-[#333333] relative text-center">
-                                    1
-                                </span>
+        <div>
+            {menuData ? (
+            <div className="flex gap-5 w-full">
+                {menuData.map((menu) => (
+                    <Card key={menu.menu_id} className="flex-auto" >
+                        <CardHeader>
+                            <div className="flex gap-2 pb-2">
+                                <Badge className="bg-[#ADE9C7] text-[#019F45] ">Món Chay</Badge>
+                                <Badge className="bg-[#FFD1D1]  text-[#FF9292]">Yêu Thích</Badge>
                             </div>
-                        </div>
-                    </button>
-                    <div className='flex w-[48px] h-[48px] pt-[12px] pr-[24px] pb-[12px] pl-[24px] gap-[8px] justify-center items-center shrink-0 flex-nowrap bg-[#fff] rounded-[8px] border-solid border border-[#d9d9d9] relative overflow-hidden z-[76]'>
-                        <div className='flex w-[20px] h-[20px] justify-center items-center shrink-0 flex-nowrap relative z-[77]'>
-                            <span className="flex w-[16px] h-[16px] justify-center items-center shrink-0 basis-auto font-['Font_Awesome_6_Pro'] text-[16px] font-black leading-[16px] text-[#333333] relative text-center whitespace-nowrap z-[78]">
-                                +
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                            <CardTitle>{menu.name}</CardTitle>
+                            <CardDescription>{menu.name_english}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <Tabs defaultValue="1" className="w-full">
+                            <TabsList>
+                                <TabsTrigger value="1">Gói Balance</TabsTrigger>
+                                <TabsTrigger value="2">Gói Fatloss</TabsTrigger>
+                                <TabsTrigger value="3">Gói Muscle Gain</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="1">{menu.calo_balance}</TabsContent>
+                            <TabsContent value="2">{menu.calo_fatloss}</TabsContent>
+                            <TabsContent value="3">{menu.calo_muscle}</TabsContent>
+                            </Tabs>
+                        </CardContent>
+                        <CardFooter>
+                            <BtnQuantity />
+                        </CardFooter>
+                    </Card>
+                ))}
             </div>
+            ) : (
+                <div className="flex gap-5 w-full">
+                    <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                    <Skeleton className="w-[100px] h-[20px] rounded-full" />
+                </div>
+
+            )}
         </div>
+                
     )
 }
 
