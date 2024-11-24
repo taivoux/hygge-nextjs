@@ -39,7 +39,7 @@ const CustomerForm = ({ onRegister }: CustomerFormProps) => {
 
     const handleRegister = () => {
         // Simulate customer registration and getting a new customer_id
-        const newCustomerId = 2;
+        const newCustomerId = 1;
         onRegister(newCustomerId); // Pass the new ID back to the parent
     };
     return (

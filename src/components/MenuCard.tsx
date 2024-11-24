@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
 import {
@@ -15,90 +14,61 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import { Skeleton } from "./ui/skeleton";
 import BtnQuantity from "./BtnQuantity";
+import { DateOnMenu, MenuOnMeal } from "@/interface/types";
 
-
-type MenuDay = {
-    menu_id: number,
-    name: string,
-    name_english: string,
-    date: string,
-    is_vegetarian: boolean,
-    is_lunch: boolean,
-    calo_balance: string,
-    calo_fatloss: string,
-    calo_muscle: string,
-    created_at: string,
-    modified_at: string,
-    deleted_at: string | null
-}
-  
 
 interface MenuProps {
-    menuDate: string;
+    weekdays: DateOnMenu[],
+    date: string,
+    meal: MenuOnMeal;
+    decreaseQuantity: (date: string, menu_id: number) => void;
+    increaseQuantity: (date: string, menu_id: number) => void;  
+    updateSku: (date: string, menu_id: number, new_sku: string) => void;  
 }
 
-const MenuCard = ({menuDate} : MenuProps) => {
-    //console.log(menu);
-    const [menuData, setMenuData] = useState<MenuDay[] | null> (null);
-    useEffect(() => {
-        async function fetchMenuData() {
-            try {
-                const link = `http://localhost:3000/api/menu/${menuDate}`
-                const response = await fetch(link);
-                const data : MenuDay[] = await response.json();
-                //console.log(data)
-                setMenuData(data); // Directly set the fetched data
-            } catch (error) {
-                console.error(`Failed to fetch menu for date ${menuDate}`, error);
-            }
-        }
-    
-        if (menuDate) fetchMenuData();
-      }, [menuDate] ); // Include menuDate as a dependency
+const MenuCard = ({weekdays, date, meal, decreaseQuantity, increaseQuantity, updateSku } : MenuProps) => {
+    // Find the specific date and menu item to get the quantity
+    // const day = weekdays.find((day) => day.date === date);
+    // const menuItem = day?.menuOnMeal.find((meal) => meal.menu_id === menu_id);
+    // const quantity = menuItem?.quantity || 0; // Default to 0 if not found
 
     return (
-        <div>
-            {menuData ? (
-            <div className="flex gap-5 w-full">
-                {menuData.map((menu) => (
-                    <Card key={menu.menu_id} className="flex-auto" >
-                        <CardHeader>
-                            <div className="flex gap-2 pb-2">
-                                <Badge className="bg-[#ADE9C7] text-[#019F45] ">Món Chay</Badge>
-                                <Badge className="bg-[#FFD1D1]  text-[#FF9292]">Yêu Thích</Badge>
-                            </div>
-                            <CardTitle>{menu.name}</CardTitle>
-                            <CardDescription>{menu.name_english}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <Tabs defaultValue="1" className="w-full">
+        <>
+            {meal ? (
+                <Card key={meal.menu_id} className="flex-auto" >
+                    <CardHeader>
+                        <div className="flex gap-2 pb-2">
+                            <Badge className="bg-[#ADE9C7] text-[#019F45] ">Món Chay</Badge>
+                            <Badge className="bg-[#FFD1D1]  text-[#FF9292]">Yêu Thích</Badge>
+                        </div>
+                        <CardTitle>{meal.name}</CardTitle>
+                        <CardDescription>{meal.name_english}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Tabs defaultValue={meal.sku} className="w-full">
                             <TabsList>
-                                <TabsTrigger value="1">Gói Balance</TabsTrigger>
-                                <TabsTrigger value="2">Gói Fatloss</TabsTrigger>
-                                <TabsTrigger value="3">Gói Muscle Gain</TabsTrigger>
+                                <TabsTrigger value="B" onClick={() => updateSku(date,meal.menu_id,"B") } >Gói Balance</TabsTrigger>
+                                <TabsTrigger value="F" onClick={() => updateSku(date,meal.menu_id,"F") }>Gói Fatloss</TabsTrigger>
+                                <TabsTrigger value="M" onClick={() => updateSku(date,meal.menu_id,"M") }>Gói Muscle Gain</TabsTrigger>
                             </TabsList>
-                            <TabsContent value="1">{menu.calo_balance}</TabsContent>
-                            <TabsContent value="2">{menu.calo_fatloss}</TabsContent>
-                            <TabsContent value="3">{menu.calo_muscle}</TabsContent>
-                            </Tabs>
-                        </CardContent>
-                        <CardFooter>
-                            <BtnQuantity />
-                        </CardFooter>
-                    </Card>
-                ))}
-            </div>
-            ) : (
-                <div className="flex gap-5 w-full">
-                    <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                    <Skeleton className="w-[100px] h-[20px] rounded-full" />
-                </div>
-
-            )}
-        </div>
-                
+                            <TabsContent value="B">{meal.calo_balance}</TabsContent>
+                            <TabsContent value="F">{meal.calo_fatloss}</TabsContent>
+                            <TabsContent value="M">{meal.calo_muscle}</TabsContent>
+                        </Tabs>
+                    </CardContent>
+                    <CardFooter>
+                        <BtnQuantity 
+                            weekdays={weekdays}
+                            date={date}
+                            menu_id={meal.menu_id}
+                            decreaseQuantity={decreaseQuantity}
+                            increaseQuantity={increaseQuantity}
+                        /> 
+                    </CardFooter>
+                </Card>
+            ) : ([]) }
+        </>
     )
 }
 
