@@ -15,7 +15,7 @@ const Header = () => {
                         height={73}
                     />
                 </a>
-                <nav>
+                <nav className="hidden xl:flex">
                     <ul>
                         <li>
                             <Link href="https://hyggegocbepnho.vn/"  passHref={true}> 

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "Hygge Everyday",
@@ -30,6 +31,7 @@ export default function RootLayout({
           {children}
           </div>
         </main>
+        <Toaster />
         <Footer />
       </body>
     </html>
