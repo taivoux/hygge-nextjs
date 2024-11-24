@@ -118,22 +118,22 @@ export default function Home() {
   }, [order]);
     return <>
         <Title />
-        <div className='bg-[#FDF6EE] rounded-lg p-[24px] flex w-[1200px] flex-col gap-[24px] items-start flex-nowrap relative mx-auto my-[40px]'>
+        <div className='bg-[#FDF6EE] rounded-lg p-[24px] flex  flex-col gap-[24px] items-start flex-nowrap relative m-5 xl:mx-auto xl:my-[40px]'>
             <MenuTitle />
             <AlertInformation name="Đặt đơn trước 21:00 hằng ngày sẽ được giao vào ngày hôm sau." />
             <AlertInformation name="Lựa chọn thực đơn theo ngày (Tối thiểu 2 ngày cho 1 đơn hàng) " />
             {weekdays.length > 0 ? (
-                <Tabs defaultValue={weekdays[0].date.toString()} className="min-h-[360px]">
-                    <TabsList className="bg-[#FDF6EE] gap-[16px] mb-5">
+                <Tabs defaultValue={weekdays[0].date.toString()} className="xl:min-h-[360px] h-auto">
+                    <TabsList className="bg-[#FDF6EE] gap-[16px] mb-5 flex-wrap h-auto">
                         {(weekdays).map((day) => (
                             <TabsTrigger key={day.date} value={day.date.toString()} className="bg-[#F2F7F4] border-[#19B43B] p-[16px]"> 
-                            {day.titleDay} ({day.titleNumber}) 
+                            {day.titleDay} <span className="hidden xl:block ml-1">({day.titleNumber})</span>
                             </TabsTrigger>
                         ))}
                     </TabsList>
                     {(weekdays).map((day) => (
                         <TabsContent key={day.date} value={day.date.toString()} > 
-                          <div className="flex gap-5 w-full flex-wrap">
+                          <div className="flex gap-5 flex-col lg:flex-row">
                               {day.menuOnMeal && day.menuOnMeal.length > 0  ? (
                                   day.menuOnMeal.map((meal) => (
                                       <MenuCard 

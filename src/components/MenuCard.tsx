@@ -36,7 +36,7 @@ const MenuCard = ({weekdays, date, meal, decreaseQuantity, increaseQuantity, upd
     return (
         <>
             {meal ? (
-                <Card key={meal.menu_id} className="flex-1 w-6/12" >
+                <Card key={meal.menu_id} className="flex-1 xl:w-6/12" >
                     <CardHeader>
                         <div className="flex gap-2 pb-2">
                             <Badge className="bg-[#ADE9C7] text-[#019F45] ">Món Chay</Badge>
@@ -46,8 +46,8 @@ const MenuCard = ({weekdays, date, meal, decreaseQuantity, increaseQuantity, upd
                         <CardDescription>{meal.name_english}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Tabs defaultValue={meal.sku} className="w-full">
-                            <TabsList>
+                        <Tabs defaultValue={meal.sku}>
+                            <TabsList className="flex-wrap h-auto">
                                 <TabsTrigger value="B" onClick={() => updateSku(date,meal.menu_id,"B") } >Gói Balance</TabsTrigger>
                                 <TabsTrigger value="F" onClick={() => updateSku(date,meal.menu_id,"F") }>Gói Fatloss</TabsTrigger>
                                 <TabsTrigger value="M" onClick={() => updateSku(date,meal.menu_id,"M") }>Gói Muscle Gain</TabsTrigger>
