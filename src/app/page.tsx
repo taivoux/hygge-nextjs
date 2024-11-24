@@ -36,7 +36,6 @@ export default function Home() {
     
         fetchWeekdays();
     }, []);
-
     const decreaseQuantity = (date: string, menuId: number) => {
         setWeekdays((prevWeekdays) => {
             // Map through the weekdays to find the target date
@@ -58,7 +57,6 @@ export default function Home() {
             });
           });
     }
-
     const increaseQuantity = (date: string, menuId: number) => {
         setWeekdays((prevWeekdays) => {
             // Map through the weekdays to find the target date
@@ -106,10 +104,18 @@ export default function Home() {
             return {...prevOrder, has_extra: newValue }
         });
     }
+    const updatePackage = (newValue: boolean) => {
+      setOrder((prevOrder) => {
+          return {...prevOrder, has_package: newValue }
+      });
+  }
     // Debug
     useEffect(() => {
-        console.log('Order state updated:', weekdays);
+        console.log('Menu Day updated:', weekdays);
     }, [weekdays]);
+    useEffect(() => {
+      console.log('Order state updated:', order);
+  }, [order]);
     return <>
         <Title />
         <div className='bg-[#FDF6EE] rounded-lg p-[24px] flex w-[1200px] flex-col gap-[24px] items-start flex-nowrap relative mx-auto my-[40px]'>
@@ -118,7 +124,7 @@ export default function Home() {
             <AlertInformation name="Lựa chọn thực đơn theo ngày (Tối thiểu 2 ngày cho 1 đơn hàng) " />
             {weekdays.length > 0 ? (
                 <Tabs defaultValue={weekdays[0].date.toString()} className="min-h-[360px]">
-                    <TabsList className="bg-[#FDF6EE] gap-[16px]">
+                    <TabsList className="bg-[#FDF6EE] gap-[16px] mb-5">
                         {(weekdays).map((day) => (
                             <TabsTrigger key={day.date} value={day.date.toString()} className="bg-[#F2F7F4] border-[#19B43B] p-[16px]"> 
                             {day.titleDay} ({day.titleNumber}) 
@@ -127,34 +133,33 @@ export default function Home() {
                     </TabsList>
                     {(weekdays).map((day) => (
                         <TabsContent key={day.date} value={day.date.toString()} > 
-                            {day.date} 
-                            <div className="flex gap-5 w-full">
-                                {day.menuOnMeal && day.menuOnMeal.length > 0  ? (
-                                    day.menuOnMeal.map((meal) => (
-                                        <MenuCard 
-                                            key={meal.menu_id} 
-                                            weekdays={weekdays} 
-                                            date={day.date} 
-                                            meal={meal} 
-                                            decreaseQuantity={decreaseQuantity} 
-                                            increaseQuantity={increaseQuantity} 
-                                            updateSku={updateSku}
-                                        /> 
-                                    ))
-                                ) : ( 
-                                    <>
-                                        <Skeleton className="w-[380px] h-[260px] rounded-lg" />
-                                        <Skeleton className="w-[380px] h-[260px] rounded-lg" />
-                                    </>
-                                )}
-                            </div>
+                          <div className="flex gap-5 w-full flex-wrap">
+                              {day.menuOnMeal && day.menuOnMeal.length > 0  ? (
+                                  day.menuOnMeal.map((meal) => (
+                                      <MenuCard 
+                                          key={meal.menu_id} 
+                                          weekdays={weekdays} 
+                                          date={day.date} 
+                                          meal={meal} 
+                                          decreaseQuantity={decreaseQuantity} 
+                                          increaseQuantity={increaseQuantity} 
+                                          updateSku={updateSku}
+                                      /> 
+                                  ))
+                              ) : ( 
+                                  <>
+                                      <Skeleton className="w-[380px] h-[260px] rounded-lg" />
+                                      <Skeleton className="w-[380px] h-[260px] rounded-lg" />
+                                  </>
+                              )}
+                          </div>
                         </TabsContent>
                     ))}
                 </Tabs>
             ) : (
                 <p>Loading menu...</p>
             )}
-            <MenuOptions updateExtra={updateExtra} hasExtra={order.has_extra} />
+            <MenuOptions hasExtra={order.has_extra} hasPackage={order.has_package} updateExtra={updateExtra} updatePackage={updatePackage}/>
             <MenuRequest />
         </div>
     </>

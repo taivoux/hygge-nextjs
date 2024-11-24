@@ -2,14 +2,20 @@ import React from 'react'
 import { Checkbox } from "@/components/ui/checkbox"
 
 interface MenuOptionsProps {
-    updateExtra: (newValue: boolean) => void;
     hasExtra: boolean; // Receive the current value of has_extra
-  }
+    hasPackage: boolean; // Receive the current value of has_extra
+    updateExtra: (newValue: boolean) => void;
+    updatePackage: (newValue: boolean) => void;
+}
 
-  const MenuOptions = ({ updateExtra, hasExtra  }: MenuOptionsProps) => {
-    const handleCheckedChange = (checked: boolean | "indeterminate") => {
+  const MenuOptions = ({ hasExtra, hasPackage, updateExtra, updatePackage   }: MenuOptionsProps) => {
+    const handleExtraChange = (checked: boolean | "indeterminate") => {
         // Normalize the value to a boolean
         updateExtra(checked === true);
+    };
+    const handlePackageChange = (checked: boolean | "indeterminate") => {
+        // Normalize the value to a boolean
+        updatePackage(checked === true);
     };
     return (
         <>
@@ -18,7 +24,7 @@ interface MenuOptionsProps {
                 <Checkbox
                     id="terms1"
                     checked={hasExtra}
-                    onCheckedChange={handleCheckedChange}
+                    onCheckedChange={handleExtraChange}
                 />
                 <label
                 htmlFor="terms1"
@@ -32,12 +38,12 @@ interface MenuOptionsProps {
             </div>
             <div className="flex gap-1.5 items-center">
                 <Checkbox
-                    id="terms1"
-                    checked={false}
-                    // onCheckedChange={field.onChange}
+                    id="terms2"
+                    checked={hasPackage}
+                    onCheckedChange={handlePackageChange}
                 />
                 <label
-                htmlFor="terms1"
+                htmlFor="terms2"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                 Đặt theo Gói Tháng 

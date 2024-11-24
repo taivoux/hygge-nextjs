@@ -1,8 +1,8 @@
 export interface Order {
     customer_id: number;
     admin_id?: number;
-    has_package?: boolean;
-    has_extra?: boolean;
+    has_package: boolean;
+    has_extra: boolean;
     no_of_date?: number;
     ProductOnOrder: ProductOnOrder[];
     MenuOnProduct?: MenuOnProduct[];

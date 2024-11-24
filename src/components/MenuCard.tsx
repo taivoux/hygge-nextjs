@@ -36,7 +36,7 @@ const MenuCard = ({weekdays, date, meal, decreaseQuantity, increaseQuantity, upd
     return (
         <>
             {meal ? (
-                <Card key={meal.menu_id} className="flex-auto" >
+                <Card key={meal.menu_id} className="flex-1 w-6/12" >
                     <CardHeader>
                         <div className="flex gap-2 pb-2">
                             <Badge className="bg-[#ADE9C7] text-[#019F45] ">Món Chay</Badge>
