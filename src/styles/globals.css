@@ -87,7 +87,7 @@ html {
 .header .wrapper ul {
   padding: 20px;
 }
-.header nav ul{
+.header nav ul {
   display: flex;
   gap: 4rem;
 }

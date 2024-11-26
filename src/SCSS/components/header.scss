@@ -1,0 +1,33 @@
+@use "../abstract/mixins";
+@use "../abstract/variables";
+
+.mobile {
+	&__nav {
+		color: variables.$color__black;
+		font-weight: 700;
+		text-transform: uppercase;
+		text-align: right;
+		position: relative;
+		right: 0;
+	}
+}
+
+@include mixins.maxSm {
+	.desktop {
+		&__nav {
+			display: none;
+		}
+	.hamburger {
+			position: fixed;
+			right: 2%;
+			cursor: pointer;
+
+		}
+	}
+}
+
+// .hamburger {
+// 	&__menu {
+// 		display: none;
+// 	}
+// }
