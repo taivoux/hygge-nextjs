@@ -39,7 +39,7 @@ const CustomerForm = ({ onRegister }: CustomerFormProps) => {
 
     const handleRegister = () => {
         // Simulate customer registration and getting a new customer_id
-        const newCustomerId = 2;
+        const newCustomerId = 1;
         onRegister(newCustomerId); // Pass the new ID back to the parent
     };
     return (
@@ -52,7 +52,6 @@ const CustomerForm = ({ onRegister }: CustomerFormProps) => {
             />
             <button onClick={handleRegister}>Register</button>
             <div className='flex gap-[8px] items-start self-stretch shrink-0 flex-nowrap relative'>
-
                 <span className="h-[36px] grow shrink-0 basis-auto font-['Manrope'] text-[24px] font-bold leading-[36px] text-[#333333] relative text-left whitespace-nowrap z-[2]">
                     Bạn đã từng đặt hàng tại Hygge?
                 </span>
