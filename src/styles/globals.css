@@ -88,11 +88,9 @@ html {
   padding: 20px;
 }
 .header nav ul {
-  display: flex;
   gap: 4rem;
 }
 .header nav ul li{
-  color: #019F45;
   font-weight: 700;
   text-transform: uppercase;
 }

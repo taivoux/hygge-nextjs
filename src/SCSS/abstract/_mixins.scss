@@ -7,8 +7,8 @@
 
 //Mixin for screen sizes:
 // small devices
-@mixin maxSm {
-  @media (max-width: variables.$screen-sm) {
+@mixin maxMd {
+  @media screen and (max-width: variables.$screen-md) {
     @content;
   }
 }
