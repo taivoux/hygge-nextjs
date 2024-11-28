@@ -1,8 +1,6 @@
 @use "../abstract/mixins";
 @use "../abstract/variables";
 
-
-
 .desktop {
 	color: variables.$color__primary;
 }
@@ -13,26 +11,13 @@
 	}
 }
 
-// #hamburger {
-// 	position: absolute;
-// 	top: 7%;
-// 	right: 2%;
-// 	cursor: pointer;
-// }
-
-// #xIcon {
-// 	position: absolute;
-// 	top: 10%;
-// 	right: 2%;
-// }
-
 .mobile {
 	color: variables.$color__black;
 	text-align: right;
 	position: relative;
 	right: 0;	
 
-	&__link {
+	&__list {
 		padding: 25px;
 	}
 	&__link:hover {
@@ -44,6 +29,7 @@
 	font-size: 20px;
 	position: relative;
 	right: 25px; 
+	top: -40px;
 }
 
 .nav {
@@ -54,21 +40,10 @@
   overflow: hidden;
   max-width: 100%;
   z-index: 1;
-  transform: translateX(-100px);
   transition: transform ease-in-out 0.2s;
 }
 
 .nav.show__nav {
-  width: 100%;
-  transform: translateX(0px);
+  width: 100vw;
+	height: 100vh;
 }
-
-//   return (
-//     <header>
-//       <div className="header">
-//         <DesktopNav />
-        
-//       </div>
-//       <MobileNav />
-//     </header>
-//   )
