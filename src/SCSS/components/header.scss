@@ -31,17 +31,17 @@
 }
 
 .nav {
-	position: absolute;
-  background: variables.$color__white;
-  left: 0;
-  width: 0;
-  overflow: hidden;
-  max-width: 100%;
-  z-index: 9;
-  transition: transform ease-in-out 0.2s;
+	position: fixed;
+	background: variables.$color__white;
+	left: 0;
+	width: 0;
+	overflow: hidden;
+	max-width: 100%;
+	z-index: 9;
+	transition: transform ease-in-out 0.2s;
 }
 
 .nav.show__nav {
-  width: 100vw;
+  	width: 100vw;
 	height: 100vh;
 }

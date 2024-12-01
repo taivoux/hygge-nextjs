@@ -75,8 +75,9 @@ html {
 .header {
   position: sticky;
   z-index: 1;
+  top: 0;
   width: 100%;
-  background: #ffffff8f;
+  background: #ffffff;
   padding: 1rem;
   border-bottom: 1px solid lightgrey;
 }

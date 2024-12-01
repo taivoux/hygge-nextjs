@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button"
 import { DateOnMenu } from "@/interface/types";
 
 
 interface BtnProps {
-  weekdays: DateOnMenu[];
+  weekdays: DateOnMenu[] | null;
   date: string;
   menu_id: number;
   decreaseQuantity: (date: string, menu_id: number) => void;
@@ -13,7 +13,7 @@ interface BtnProps {
 
 const BtnQuantity = ({weekdays, date, menu_id, decreaseQuantity, increaseQuantity} : BtnProps ) => {
   // Find the specific date and menu item to get the quantity
-  const day = weekdays.find((day) => day.date === date);
+  const day = weekdays?.find((day) => day.date === date);
   const menuItem = day?.menuOnMeal.find((meal) => meal.menu_id === menu_id);
   const quantity = menuItem?.quantity || 0; // Default to 0 if not found
   return (
