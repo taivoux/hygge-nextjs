@@ -1,14 +1,21 @@
 import { DateOnMenu , MenuOnMeal } from '@/interface/types';
-  
+import fakeMenu from '@/data/fakeMenu.json';
+
 export default async function getNextFiveWeekdays(): Promise<DateOnMenu[]>   {
     const weekdays: DateOnMenu[] = [];
     const today = new Date();
     const hour = today.getHours();
   
+    // Using fakeMenu
+    if (1 == 1) {
+      return fakeMenu;
+    }
+
+
     if (hour >= 21) {
       today.setDate(today.getDate() + 1);
     }
-  
+    
     // get next five days
     while (weekdays.length < 5) {
       today.setDate(today.getDate() + 1 );
@@ -47,5 +54,7 @@ export default async function getNextFiveWeekdays(): Promise<DateOnMenu[]>   {
         weekdays.push(value);
       }
     }
+
+
     return weekdays;
 }

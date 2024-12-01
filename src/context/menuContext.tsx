@@ -48,7 +48,11 @@ export const MenuProvider: React.FC<{ children: React.ReactNode }> = ({ children
     [weekdays, isLoading, error]
   );
 
-  return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;
+  return (
+    <MenuContext.Provider value={value}>
+      {children}
+    </MenuContext.Provider>
+  );
 };
 
 export const useMenu = () => {
