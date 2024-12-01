@@ -7,9 +7,9 @@ export default async function getNextFiveWeekdays(): Promise<DateOnMenu[]>   {
     const hour = today.getHours();
   
     // Using fakeMenu
-    if (1 == 1) {
-      return fakeMenu;
-    }
+    //if (1 == 1) {
+    //  return fakeMenu;
+    //}
 
 
     if (hour >= 21) {

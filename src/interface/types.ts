@@ -48,3 +48,11 @@ export interface DateOnMenu {
     date: string; // e.g., "18112024" (DDMMYYYY format)
     menuOnMeal : MenuOnMeal[];
 };
+
+export interface Product {
+    product_id: number;
+    name: string;
+    sku: string;
+    unit_price: number;
+    package_price: number;
+}

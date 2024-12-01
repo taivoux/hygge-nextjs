@@ -1,19 +1,49 @@
 'use client';
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMenu } from '@/context/menuContext';
 import { useOrder } from '@/context/orderContext';
 import Title from "@/components/Title";
 import Menu from '@/components/Menu'
 import { decreaseQuantity, increaseQuantity, updateSku, updateExtra, updatePackage } from "@/utils/menuUtils";
 import { Button } from "@mui/material";
-import Link from "next/link";
+import { getProducts } from "@/utils/productUtils";
+import { Product } from "@/interface/types";
+import { updateOrder } from "@/utils/orderUtils";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
   const { weekdays, isLoading, error , setWeekdays } = useMenu();
-    const { order, setOrder } = useOrder()
+  const { order, setOrder } = useOrder();
+  const [ products, setProducts ] = useState<Product[]>([]);
+  //const [ error, setError ] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+        try {
+            const data = await getProducts();
+            setProducts(data);
+        } catch (erro) {
+            //setError(err.message);
+            console.error("Failed to fetch products:", erro);
+            throw new Error("Unable to fetch products at this time. Please try again later.");
+        }
+    };
+
+    fetchProducts();
+}, []);
 
     // Handlers
+    const handleNavigation = () => {
+      // Trigger updateOrder
+      const updatedOrder = updateOrder(order, weekdays, products); // Ensure products is available
+      setOrder(updatedOrder); // Update the global order context
+
+      // Navigate to the next page
+      router.push('/hoa-don');
+    };
+
     const handleDecreaseQuantity = (date: string, menuId: number) => {
       setWeekdays((prevWeekdays) => {
           if (!prevWeekdays) return null ; // Handle null state
@@ -52,7 +82,9 @@ export default function Home() {
     useEffect(() => {
         console.log('Order state updated:', order);
     }, [order]);
-    
+    useEffect(() => {
+        console.log('Product updated:', products);
+    }, [products]);
     return (
       <>
         <Title />
@@ -67,9 +99,7 @@ export default function Home() {
           updatePackage = {handleUpdatePackage}
         />
         {/* Use client-side navigation */}
-        <Link href="/hoa-don">
-          <Button variant="contained" >Click Here</Button>
-        </Link>
+        <Button variant="contained" onClick={handleNavigation} >Click Here</Button>
         
       </>
     )
