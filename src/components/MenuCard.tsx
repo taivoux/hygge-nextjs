@@ -19,7 +19,7 @@ import { DateOnMenu, MenuOnMeal } from "@/interface/types";
 
 
 interface MenuProps {
-    weekdays: DateOnMenu[],
+    weekdays: DateOnMenu[] | null,
     date: string,
     meal: MenuOnMeal;
     decreaseQuantity: (date: string, menu_id: number) => void;
@@ -36,7 +36,7 @@ const MenuCard = ({weekdays, date, meal, decreaseQuantity, increaseQuantity, upd
     return (
         <>
             {meal ? (
-                <Card key={meal.menu_id} className="flex-1 xl:w-6/12" >
+                <Card key={meal.menu_id} className="flex-1 lg:max-w-96" >
                     <CardHeader>
                         <div className="flex gap-2 pb-2">
                             <Badge className="bg-[#ADE9C7] text-[#019F45] ">Món Chay</Badge>

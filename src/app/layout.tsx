@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google'
-import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster"
+import { OrderProvider } from "@/context/orderContext";
+import { MenuProvider } from "@/context/menuContext";
 
 export const metadata: Metadata = {
   title: "Hygge Everyday",
@@ -28,7 +28,11 @@ export default function RootLayout({
         <Header />
         <main>
           <div className="wrapper">
-          {children}
+          <OrderProvider>
+            <MenuProvider>
+              {children}
+            </MenuProvider>
+          </OrderProvider>
           </div>
         </main>
         <Toaster />

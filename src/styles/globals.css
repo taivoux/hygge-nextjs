@@ -261,3 +261,35 @@ h4{
   width: 100%;
   border-radius: 8px;
 }
+
+/** Menu Tab **/
+.menu-day .MuiTabs-flexContainer {
+  gap: 16px;
+  height: auto;
+}
+
+.menu-day .menu-tab-title {
+  background: white;
+  padding: 16px;
+  text-transform: capitalize;
+  font-family: 'Manrope';
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+}
+.menu-day .Mui-selected .menu-tab-title{
+  border: 1px solid #19B43B;
+  background: #F2F7F4;
+}
+.menu-day button.Mui-selected {
+  border: none;
+  color: #19B43B;
+}
+.menu-day button {
+  padding: 0px;
+}
+.menu-day .MuiTabs-indicator {
+  background-color: transparent;
+}
+.menu-day {
+  margin-bottom: 24px;
+}

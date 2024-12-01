@@ -1,39 +1,77 @@
-import { useEffect, useState } from 'react';
-import WeekdayList from './Weekday'
+import React, { useState } from 'react';
+import { Tabs, Tab, Box, Skeleton } from '@mui/material';
+import MenuCard from './MenuCard';
+import { DateOnMenu } from '@/interface/types';
 
-export default function MenuDays() {
-  // State to track if the current time is past 21:00
-  const [isAfter9PM, setIsAfter9PM] = useState(false);
+interface MenuDayProps {
+  weekdays: DateOnMenu[] | null,
+  decreaseQuantity: (date: string, menu_id: number) => void;
+  increaseQuantity: (date: string, menu_id: number) => void;
+  updateSku: (date: string, menu_id: number, new_sku: string) => void;
+}
 
-  useEffect(() => {
-    // Function to check if current time is past 21:00
-    const checkTime = () => {
-      const now = new Date();
-      const currentHour = now.getHours();
-      const currentMinute = now.getMinutes();
+const MenuDays = ({ weekdays, decreaseQuantity, increaseQuantity, updateSku }: MenuDayProps) => {
+  const [activeTab, setActiveTab] = useState(weekdays ? weekdays[0]?.date.toString() : "");
 
-      // Check if time is past 21:00 (9 PM)
-      if (currentHour > 21 || (currentHour === 21 && currentMinute > 0)) {
-        setIsAfter9PM(true);
-      } else {
-        setIsAfter9PM(false);
-      }
-    };
-
-    // Initial check when the component mounts
-    checkTime();
-
-    // Set an interval to check every minute (60000 milliseconds)
-    const intervalId = setInterval(checkTime, 60000);
-
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
+  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    setActiveTab(newValue);
+  };
 
   return (
-    <div>
-      <p>{isAfter9PM ? "After 9PM" : "Before 9PM)"}</p>
-      <WeekdayList/>
-    </div>
+    <Box sx={{ width: '100%' }}>
+      <Tabs
+        value={activeTab}
+        onChange={handleTabChange}
+        variant="scrollable"
+        scrollButtons
+        allowScrollButtonsMobile
+        className="menu-day lg:flex lg:flex-wrap"
+
+      >
+        {weekdays.map((day) => (
+          <Tab
+            key={day.date}
+            value={day.date.toString()}
+            label={
+              <Box className="menu-tab-title" >
+                {day.titleDay} <span className="hidden lg:inline-block">({day.titleNumber})</span>
+              </Box>
+            }
+          />
+        ))}
+      </Tabs>
+      {weekdays && weekdays.map((day) => (
+        <Box
+          key={day.date}
+          hidden={activeTab !== day.date.toString()}
+          className="menu-box"
+        >
+          {activeTab === day.date.toString() && (
+            <Box className="flex gap-5 flex-col lg:flex-row">
+              {day.menuOnMeal && day.menuOnMeal.length > 0 ? (
+                day.menuOnMeal.map((meal) => (
+                  <MenuCard
+                    key={meal.menu_id}
+                    weekdays={weekdays}
+                    date={day.date}
+                    meal={meal}
+                    decreaseQuantity={decreaseQuantity}
+                    increaseQuantity={increaseQuantity}
+                    updateSku={updateSku}
+                  />
+                ))
+              ) : (
+                <>
+                  <Skeleton variant="rectangular" width={380} height={260} sx={{ borderRadius: '8px' }} />
+                  <Skeleton variant="rectangular" width={380} height={260} sx={{ borderRadius: '8px' }} />
+                </>
+              )}
+            </Box>
+          )}
+        </Box>
+      ))}
+    </Box>
   );
-}
+};
+
+export default MenuDays;
