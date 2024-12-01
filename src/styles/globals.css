@@ -87,12 +87,10 @@ html {
 .header .wrapper ul {
   padding: 20px;
 }
-.header nav ul{
-  display: flex;
+.header nav ul {
   gap: 4rem;
 }
 .header nav ul li{
-  color: #019F45;
   font-weight: 700;
   text-transform: uppercase;
 }

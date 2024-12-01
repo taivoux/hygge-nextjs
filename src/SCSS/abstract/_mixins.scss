@@ -6,6 +6,13 @@
 }
 
 //Mixin for screen sizes:
+// small devices
+@mixin maxMd {
+  @media screen and (max-width: variables.$screen-md) {
+    @content;
+  }
+}
+
 // medium devices
 @mixin md {
   @media (min-width: variables.$screen-md) {

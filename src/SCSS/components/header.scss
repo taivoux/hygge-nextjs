@@ -1,0 +1,47 @@
+@use "../abstract/mixins";
+@use "../abstract/variables";
+
+.desktop {
+	color: variables.$color__primary;
+}
+
+@include mixins.md {
+	.mobile {
+		display: none;
+	}
+}
+
+.mobile {
+	color: variables.$color__black;
+	text-align: right;
+
+	&__list {
+		padding: 25px;
+	}
+	&__link:hover {
+		color: variables.$color__primary;
+	}
+}
+
+.toggle {
+	font-size: 20px;
+	position: relative;
+	right: 10px; 
+	top: -40px;
+}
+
+.nav {
+	position: absolute;
+  background: variables.$color__white;
+  left: 0;
+  width: 0;
+  overflow: hidden;
+  max-width: 100%;
+  z-index: 9;
+  transition: transform ease-in-out 0.2s;
+}
+
+.nav.show__nav {
+  width: 100vw;
+	height: 100vh;
+}

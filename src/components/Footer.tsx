@@ -3,7 +3,6 @@ import { FaYoutube, FaFacebook } from "react-icons/fa6";
 
 import '../../src/scss/components/footer.scss'
 
-
 const Footer = () => {
   return (
     <footer className="footer">
