@@ -5,12 +5,13 @@ import { useMenu } from '@/context/menuContext';
 import { useOrder } from '@/context/orderContext';
 import Title from "@/components/Title";
 import Menu from '@/components/Menu'
-import { decreaseQuantity, increaseQuantity, updateSku, updateExtra, updatePackage } from "@/utils/menuUtils";
+import { decreaseQuantity, increaseQuantity, updateSku, updateExtra, updatePackage, updateCustomer } from "@/utils/menuUtils";
 import { Button } from "@mui/material";
 import { getProducts } from "@/utils/productUtils";
 import { Product } from "@/interface/types";
 import { updateOrder } from "@/utils/orderUtils";
 import { useRouter } from 'next/navigation';
+import Customer from "@/components/Customer";
 
 export default function Home() {
   const router = useRouter();
@@ -75,6 +76,10 @@ export default function Home() {
     const handleUpdatePackage = (newValue: boolean) => {
         setOrder((prevOrder) => updatePackage(prevOrder, newValue));
     };
+
+    const handleCustomer = (newCustomer: number) => {
+      setOrder((prevOrder) => updateCustomer(prevOrder, newCustomer));
+    };
     // Debug
     useEffect(() => {
         console.log('Week Day updated:', weekdays);
@@ -88,6 +93,10 @@ export default function Home() {
     return (
       <>
         <Title />
+        <Customer
+          order = {order}
+          updateCustomer = {handleCustomer}
+        />
         <Menu 
           weekdays = {weekdays}
           isLoading = {isLoading}

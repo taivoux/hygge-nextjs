@@ -68,3 +68,7 @@ export const updateExtra = (order: Order, newValue: boolean): Order => {
 export const updatePackage = (order: Order, newValue: boolean): Order => {
   return { ...order, has_package: newValue };
 };
+
+export const updateCustomer = (order: Order, newValue: number): Order => {
+  return { ...order, customer_id: newValue };
+};
