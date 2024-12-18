@@ -1,11 +1,11 @@
-import CheckoutBtn from "@/components/BtnPrimary";
+import BtnLink from "@/components/BtnLink";
 
 export default function SuccessPage() {
-    return (
-      <div>
-        <h1>Order Successful</h1>
-        <p>Thank you for your order!</p>
-        <CheckoutBtn name="Mua Tiếp Hàng" link="/"/>
-      </div>
-    );
+  return (
+    <div>
+      <h1>Order Successful</h1>
+      <p>Thank you for your order!</p>
+      <BtnLink name="Mua Tiếp Hàng" link="/" />
+    </div>
+  );
 }
