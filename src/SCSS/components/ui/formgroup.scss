@@ -1,0 +1,25 @@
+/*  @media (max-width: 739px) {
+}
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+*/
+@media (min-width: 1024px) {
+  /* CSS cho màn hình máy tính */
+  .space-between {
+    margin-right: 10px;
+  }
+}
+
+.label-form-group {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.input-form-group-large {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid grey;
+}
+.phone-readonly {
+  background-color: lightgray;
+}
