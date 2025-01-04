@@ -5,6 +5,7 @@ import { useMenu } from "@/context/menuContext";
 import { useOrder } from "@/context/orderContext";
 import Title from "@/components/Title";
 import Menu from "@/components/Menu";
+import PackedFood from "@/components/PackedFood";
 import {
   decreaseQuantity,
   increaseQuantity,
@@ -36,7 +37,7 @@ export default function Home() {
         //setError(err.message);
         console.error("Failed to fetch products:", erro);
         throw new Error(
-          "Unable to fetch products at this time. Please try again later.",
+          "Unable to fetch products at this time. Please try again later."
         );
       }
     };
@@ -111,6 +112,8 @@ export default function Home() {
         updatePackage={handleUpdatePackage}
       />
       {/* Use client-side navigation */}
+      {/* <PackedFood /> */}
+
       <Button variant="contained" onClick={handleNavigation}>
         Click Here
       </Button>
