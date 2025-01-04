@@ -48,6 +48,7 @@ export function updateProductOnOrder(weekdays: DateOnMenu[], products: Product[]
         const product = products.find((p) => p.sku === sku);
         return {
             product_id: product?.product_id || 0,
+            name: product?.name || "",
             quantity: data.quantity,
             sub_price: data.sub_price,
         };

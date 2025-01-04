@@ -10,6 +10,7 @@ export interface Order {
   
 export interface ProductOnOrder {
     product_id: number;
+    name: string;
     quantity: number;
     sub_price: number;
 }
