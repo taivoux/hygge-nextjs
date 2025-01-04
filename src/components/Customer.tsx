@@ -6,6 +6,7 @@ import { Order } from '@/interface/types';
 import { Tabs, Tab, Box } from '@mui/material';
 import CustomerNew from './CustomerNew';
 import CustomerOld from './CustomerOld';
+import { AppStateProvider } from './customer/variables';
 
 interface CustomerProps {
     order: Order,
@@ -20,6 +21,7 @@ const Customer = ({ order, updateCustomer }: CustomerProps) => {
     };
 
     return (
+        <AppStateProvider>
         <div className='bg-[#FDF6EE] rounded-lg p-[24px] flex  flex-col gap-[24px] items-start flex-nowrap relative lg:m-5 xl:mx-auto xl:my-[40px]'>
             <h2>Bạn đã từng đặt hàng tại Hygge?</h2>
             <Box sx={{ width: '100%' }}>
@@ -38,6 +40,8 @@ const Customer = ({ order, updateCustomer }: CustomerProps) => {
                 {activeTab === 1 && <CustomerOld updateCustomer={updateCustomer} />}
             </Box>
         </div>
+        </AppStateProvider>
+        
     )
 }
 

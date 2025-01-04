@@ -1,33 +1,17 @@
 import React from 'react';
-import { Box, TextField, Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import { useAppState } from './customer/variables';
+import { useCustomerHandlers } from "./customer/useCustomerHandlers";
+import FormComponent from "./customer/formCustomer";
 
 interface CustomerNewProps {
-    updateCustomer: (newValue: number) => void;
+    updateCustomer: (newValue: number) => void; // Define the prop for updating customer
 }
-
-const CustomerNew: React.FC<CustomerNewProps> = ({ updateCustomer }) => {
+const CustomerNew: React.FC<CustomerNewProps> = ({ updateCustomer })=> {  
     return (
-        <Box sx={{ p: 2 }}>
-            <TextField
-                fullWidth
-                label="Tên của bạn"
-                variant="outlined"
-                margin="normal"
-            />
-            <TextField
-                fullWidth
-                label="Số điện thoại"
-                variant="outlined"
-                margin="normal"
-            />
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => updateCustomer(1)} // Example action
-            >
-                Xác nhận
-            </Button>
-        </Box>
+        <Box sx={{ p: 2 }} display="flex" flexDirection="column" gap={3} >
+            <FormComponent />
+        </Box>   
     );
 };
 
