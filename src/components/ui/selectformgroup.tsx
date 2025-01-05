@@ -7,8 +7,8 @@ interface MyProps {
   label: string;
   labelClass: string;
   selectClass: string;
-  selectOptions: { ward_code: number } | { district_code: number }[];
-  selectedValue: number | undefined;
+  selectOptions: object[];
+  selectedValue: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => any;
 }
 
@@ -34,19 +34,16 @@ const SelectFormGroup: React.FC<MyProps> = ({
       >
         {selectOptions.length > 0 ? (
           selectOptions.map((item) => {
+            const value =
+              name == "ward_code" ? item.ward_code : item.district_code;
             return (
-              <option
-                value={
-                  name == "ward_code" ? item.ward_code : item.district_code
-                }
-                key={name == "ward_code" ? item.ward_code : item.district_code}
-              >
-                {name == "ward_code" ? item.ward_code : item.district_code}
+              <option value={value} key={value}>
+                {value}
               </option>
             );
           })
         ) : (
-          <option value="">None--</option>
+          <option value={0}>None--</option>
         )}
       </select>
     </>
