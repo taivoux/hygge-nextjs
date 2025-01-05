@@ -1,5 +1,6 @@
 import React from "react";
 import { FaYoutube, FaFacebook } from "react-icons/fa6";
+import Image from "next/image";
 
 import "../compiled/style.css";
 
@@ -12,7 +13,7 @@ const Footer = () => {
           <div className="footer__wrap">
             <div className="footer__logo">
               <a href="https://hyggegocbepnho.vn/">
-                <img src="/logo.png" alt="" width={120} height={73} />
+                <Image src="/logo.png" alt="" width={120} height={73} />
               </a>
             </div>
             <h5>HYGGE- GÓC BẾP NHỎ</h5>
