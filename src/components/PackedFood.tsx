@@ -1,3 +1,4 @@
+import { PackedFood as PackedFoodType } from "@/interface/types";
 import { getPackedFood } from "@/utils/productUtils";
 import { useState, useEffect } from "react";
 
@@ -8,45 +9,46 @@ const PackedFood = () => {
   /*
   const packedFoodItemsArr = [
     {
-      id: 1,
+      product_id: 1,
       name: "Bua An Balance",
       ingredients: "Thành phần: Ghi chú thành phần món ăn",
-      price: 68000,
+      unit_price: 68000,
       quantity: 0,
     },
     {
-      id: 2,
+      product_id: 2,
       name: "Bữa ăn Fat Loss",
       ingredients: "Thành phần: Ghi chú thành phần món ăn",
-      price: 68000,
+      unit_price: 68000,
       quantity: 0,
     },
     {
-      id: 3,
+      product_id: 3,
       name: "Chả ức gà nguyên vị",
       ingredients: "Thành phần: Ghi chú thành phần món ăn",
-      price: 100000,
+      unit_price: 100000,
       quantity: 0,
     },
     {
-      id: 4,
+      product_id: 4,
       name: "Chả ức gà nấm",
       ingredients: "Thành phần: Ghi chú thành phần món ăn",
-      price: 12000,
+      unit_price: 12000,
       quantity: 0,
     },
     {
-      id: 5,
+      product_id: 5,
       name: "Chả ức gà rau củ",
       ingredients: "Thành phần: Ghi chú thành phần món ăn",
-      price: 150000,
+      unit_price: 150000,
       quantity: 0,
     },
   ];
   */
 
-  const [packedFoods, setPackedFoods] = useState([]);
+  const [packedFoods, setPackedFoods] = useState<PackedFoodType[]>([]);
   useEffect(() => {
+    // setPackedFoods(packedFoodItemsArr);
     const fetchPackedFood = async () => {
       try {
         const dataResult = await getPackedFood();
@@ -54,7 +56,7 @@ const PackedFood = () => {
       } catch (erro) {
         console.error("Failed to fetch packed food from products:", erro);
         throw new Error(
-          "Unable to fetch products at this time. Please try again later."
+          "Unable to fetch products at this time. Please try again later.",
         );
       }
     };
@@ -62,32 +64,18 @@ const PackedFood = () => {
     fetchPackedFood();
   }, []);
   const decreaseQuatity = (product_id: number) => {
-    setPackedFoods((pre) => {
-      // in case current packed quantity equals 0, do nothing
-      let currentPacked = pre.filter((item) => {
-        return item.product_id == product_id;
-      });
-      if (currentPacked[0].quantity == 0) {
-        return pre;
-      } else {
-        // update quantity
-        let newPackedArr = pre.map((item) =>
-          item.product_id == product_id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
-        return newPackedArr;
-      }
-    });
+    const food = packedFoods.find((item) => item.product_id == product_id);
+    if (food && food.quantity > 0) {
+      food.quantity -= 1;
+      setPackedFoods([...packedFoods]);
+    }
   };
   const increaseQuatity = (product_id: number) => {
-    setPackedFoods((pre) =>
-      pre.map((item) =>
-        item.product_id == product_id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
+    const food = packedFoods.find((item) => item.product_id == product_id);
+    if (food) {
+      food.quantity += 1;
+      setPackedFoods([...packedFoods]);
+    }
   };
 
   return (
