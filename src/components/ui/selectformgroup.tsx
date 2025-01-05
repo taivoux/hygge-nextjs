@@ -7,7 +7,7 @@ interface MyProps {
   label: string;
   labelClass: string;
   selectClass: string;
-  selectOptions: object[];
+  selectOptions: { ward_code: string; district_code: string }[];
   selectedValue: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => any;
 }

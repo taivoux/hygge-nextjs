@@ -26,8 +26,8 @@ const CustomerOld: React.FC<CustomerOldProps> = ({ updateCustomer }) => {
   let [address, setAddress] = useState<string>("");
   let [shipNote, setShipNote] = useState<string>("");
   let [restauNote, setRestauNote] = useState<string>("");
-  let [wardCode, setWardCode] = useState<Object[]>([]);
-  let [districtCode, setDistrictCode] = useState<Object[]>([]);
+  let [wardCode, setWardCode] = useState<OldCustomer[]>([]);
+  let [districtCode, setDistrictCode] = useState<OldCustomer[]>([]);
   let [selectedWard, setSelectedWard] = useState<string>("");
   let [selectedDistrict, setSelectedDistrict] = useState<string>("");
 
