@@ -1,3 +1,4 @@
+import { PackedFood as PackedFoodType } from "@/interface/types";
 import { getPackedFood } from "@/utils/productUtils";
 import { useState, useEffect } from "react";
 
@@ -45,7 +46,7 @@ const PackedFood = () => {
   ];
   */
 
-  const [packedFoods, setPackedFoods] = useState([]);
+  const [packedFoods, setPackedFoods] = useState<PackedFoodType[]>([]);
   useEffect(() => {
     const fetchPackedFood = async () => {
       try {
@@ -54,7 +55,7 @@ const PackedFood = () => {
       } catch (erro) {
         console.error("Failed to fetch packed food from products:", erro);
         throw new Error(
-          "Unable to fetch products at this time. Please try again later."
+          "Unable to fetch products at this time. Please try again later.",
         );
       }
     };
@@ -62,32 +63,18 @@ const PackedFood = () => {
     fetchPackedFood();
   }, []);
   const decreaseQuatity = (product_id: number) => {
-    setPackedFoods((pre) => {
-      // in case current packed quantity equals 0, do nothing
-      let currentPacked = pre.filter((item) => {
-        return item.product_id == product_id;
-      });
-      if (currentPacked[0].quantity == 0) {
-        return pre;
-      } else {
-        // update quantity
-        let newPackedArr = pre.map((item) =>
-          item.product_id == product_id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
-        return newPackedArr;
-      }
-    });
+    const food = packedFoods.find((item) => item.product_id == product_id);
+    if (food) {
+      food.quantity -= 1;
+      setPackedFoods([...packedFoods]);
+    }
   };
   const increaseQuatity = (product_id: number) => {
-    setPackedFoods((pre) =>
-      pre.map((item) =>
-        item.product_id == product_id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
+    const food = packedFoods.find((item) => item.product_id == product_id);
+    if (food) {
+      food.quantity += 1;
+      setPackedFoods([...packedFoods]);
+    }
   };
 
   return (
