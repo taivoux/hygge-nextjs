@@ -1,6 +1,7 @@
 import { PackedFood as PackedFoodType } from "@/interface/types";
 import { getPackedFood } from "@/utils/productUtils";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 console.log("call api packed food");
 console.log(await getPackedFood());
@@ -112,7 +113,7 @@ const PackedFood = () => {
             <p className="ml-4 pb-3 text-green-600 font-bold mt-2">
               VND {packedFoodItem.unit_price}
             </p>
-            <img
+            <Image
               className="ml-4 w-11/12 h-56 pb-3"
               src="https://phunuvietnam.mediacdn.vn/179072216278405120/2022/9/28/dau-nanh-nhat-edamame-la-gi-nhung-loi-ich-suc-khoe-cua-dau-nanh-nhat-edamame-202012021511528602-16642593149221595968842-1664379512856-1664379513389420915140.jpg"
               alt="packed-food-images"
