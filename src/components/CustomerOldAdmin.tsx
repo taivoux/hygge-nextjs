@@ -26,12 +26,10 @@ const CustomerOld: React.FC<CustomerOldProps> = ({ updateCustomer }) => {
   let [address, setAddress] = useState<string>("");
   let [shipNote, setShipNote] = useState<string>("");
   let [restauNote, setRestauNote] = useState<string>("");
-  let [wardCode, setWardCode] = useState<{ ward_code: number }[]>([]);
-  let [districtCode, setDistrictCode] = useState<{ district_code: number }[]>(
-    []
-  );
-  let [selectedWard, setSelectedWard] = useState<number>();
-  let [selectedDistrict, setSelectedDistrict] = useState<number>();
+  let [wardCode, setWardCode] = useState<OldCustomer[]>([]);
+  let [districtCode, setDistrictCode] = useState<OldCustomer[]>([]);
+  let [selectedWard, setSelectedWard] = useState<string>("");
+  let [selectedDistrict, setSelectedDistrict] = useState<string>("");
 
   let [visible, setVisible] = useState<boolean>(false);
   const clickOutSideSearchField = (): void => setVisible(false);
@@ -69,7 +67,7 @@ const CustomerOld: React.FC<CustomerOldProps> = ({ updateCustomer }) => {
       setWardCode(wardCodeArr);
       let districtCodeArr = await getOldCustomerInfo(
         "search_district_code",
-        ""
+        "",
       );
       setDistrictCode(districtCodeArr);
     };
@@ -101,7 +99,7 @@ const CustomerOld: React.FC<CustomerOldProps> = ({ updateCustomer }) => {
           note_restaurant: restauNote,
           district_code: selectedDistrict,
           ward_code: selectedWard,
-        }
+        },
       );
     }
   };

@@ -9,10 +9,10 @@ export interface Order {
 }
 
 export interface ProductOnOrder {
-    product_id: number;
-    name: string;
-    quantity: number;
-    sub_price: number;
+  product_id: number;
+  name: string;
+  quantity: number;
+  sub_price: number;
 }
 
 export interface MenuOnProduct {
@@ -70,8 +70,8 @@ export interface OldCustomer {
   name: string;
   telephone: string;
   address: string;
-  ward_code: number;
-  district_code: number;
+  ward_code: string;
+  district_code: string;
   note_ship: string;
   note_restaurant: string;
 }
@@ -84,6 +84,6 @@ export interface UpdateOldCustomer {
   note_restaurant: string;
   //created_at: Date;
   //modified_at: Date;
-  district_code: number | undefined;
-  ward_code: number | undefined;
+  district_code: string;
+  ward_code: string;
 }

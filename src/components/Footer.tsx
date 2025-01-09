@@ -1,22 +1,23 @@
-import React from 'react'
+import React from "react";
 import { FaYoutube, FaFacebook } from "react-icons/fa6";
+import Image from "next/image";
 
-import '../../src/scss/components/footer.scss'
+import "../compiled/style.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
-			<div className="footer__container">
-				<div className="footer__block md:grid-cols-3">
+      <div className="footer__container">
+        <div className="footer__block md:grid-cols-3">
           {/* column 1 */}
-					<div className="footer__wrap">
-						<div className="footer__logo">
-							<a href="https://hyggegocbepnho.vn/">
-								<img src="../logo.png" alt="" width={120} height={73}/>
-							</a>
-						</div>
-						<h5>HYGGE- GÓC BẾP NHỎ</h5>
-						<ul className="footer__list">
+          <div className="footer__wrap">
+            <div className="footer__logo">
+              <a href="https://hyggegocbepnho.vn/">
+                <Image src="/logo.png" alt="" width={120} height={73} />
+              </a>
+            </div>
+            <h5>HYGGE- GÓC BẾP NHỎ</h5>
+            <ul className="footer__list">
               <li>Công ty TNHH Hygge F&B Services</li>
               <li>Địa chỉ: 69/3 Cao Thắng, P3, Q3, Tp.HCM</li>
               <li>Hotline đặt tiệc: 0934.007.402</li>
@@ -24,7 +25,7 @@ const Footer = () => {
               <li>Email: contact@hyggegocbepnho.com</li>
               <li>MST: 0318231062</li>
             </ul>
-					</div>
+          </div>
           {/* column 2 */}
           <div className="footer__wrap">
             <div className="footer__buffer" aria-hidden="true"></div>
@@ -43,25 +44,25 @@ const Footer = () => {
             <ul className="social__list">
               <li className="social__item">
                 <a href="https://www.facebook.com/hygge.gocbepnho">
-                  <FaFacebook className="social__logo"/>
+                  <FaFacebook className="social__logo" />
                 </a>
               </li>
               <li className="social__item">
                 <a href="https://www.facebook.com/hygge.gocbepnho">
-                  <FaYoutube className="social__logo"/>
+                  <FaYoutube className="social__logo" />
                 </a>
               </li>
             </ul>
-				  </div>
-			  </div>
+          </div>
+        </div>
       </div>
       {/* copyright */}
-      <hr className="copyright__separator"/>
+      <hr className="copyright__separator" />
       <div className="copyright__container">
         <p>© Copyright 2024 Hygge. All rights reserved.</p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

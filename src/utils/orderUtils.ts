@@ -3,11 +3,10 @@ import { toast, useToast } from "@/hooks/use-toast";
 import { updateMenuOnProduct, updateProductOnOrder } from "./productUtils";
 
 export const handleSubmit = async (order: Order) => {
-  const { toast } = useToast();
   try {
-    const response = await fetch('http://localhost:3000/api/order/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("http://localhost:3000/api/order/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(order),
     });
 
