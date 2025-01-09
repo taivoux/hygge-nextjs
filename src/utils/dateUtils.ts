@@ -1,5 +1,5 @@
 import { DateOnMenu , MenuOnMeal } from '@/interface/types';
-import fakeMenu from '@/data/fakeMenu.json';
+//import fakeMenu from '@/data/fakeMenu.json';
 
 export default async function getNextFiveWeekdays(): Promise<DateOnMenu[]>   {
     const weekdays: DateOnMenu[] = [];

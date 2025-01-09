@@ -5,7 +5,7 @@ import { useMenu } from "@/context/menuContext";
 import { useOrder } from "@/context/orderContext";
 import Title from "@/components/Title";
 import Menu from "@/components/Menu";
-import PackedFood from "@/components/PackedFood";
+//import PackedFood from "@/components/PackedFood";
 import {
   decreaseQuantity,
   increaseQuantity,
@@ -23,7 +23,7 @@ import Customer from "@/components/Customer";
 
 export default function Home() {
   const router = useRouter();
-  const { weekdays, isLoading, error, setWeekdays } = useMenu();
+  const { weekdays, isLoading, setWeekdays } = useMenu();
   const { order, setOrder } = useOrder();
   const [products, setProducts] = useState<Product[]>([]);
   //const [ error, setError ] = useState<string | null>(null);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, TextField, Button, Typography, FormControl, Select, FormHelperText, MenuItem, InputLabel, SelectChangeEvent } from '@mui/material';
 import { AppStateProvider, useAppState } from './variables';
 import { useCustomerHandlers } from "./useCustomerHandlers";

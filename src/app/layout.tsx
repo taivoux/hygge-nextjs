@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Manrope } from 'next/font/google';
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,19 +12,18 @@ export const metadata: Metadata = {
   description: "Hygge Everyday",
 };
 
+const manrope = Manrope({
+  subsets: ['latin'], // Specify the subsets you need
+  weight: ['200', '300', '400', '500', '600', '700', '800'], // Specify the font weights you need
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link 
-          rel="stylesheet" 
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" 
-        />
-      </head>
+    <html lang="en" className={manrope.className}>
       <body>
         <Header />
         <main>

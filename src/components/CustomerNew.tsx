@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { useAppState } from './customer/variables';
 import { useCustomerHandlers } from "./customer/useCustomerHandlers";
 import FormComponent from "./customer/formCustomer";

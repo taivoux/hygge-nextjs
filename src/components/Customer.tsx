@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import React from "react"
-import { Order } from "@/interface/types";
 import { Tabs, Tab, Box } from "@mui/material";
 import CustomerNew from "./CustomerNew";
 import CustomerOld from "./CustomerOld";
@@ -10,11 +9,10 @@ import CustomerOldAdmin from "./CustomerOldAdmin";
 import { AppStateProvider } from './customer/variables';
 
 interface CustomerProps {
-  order: Order;
   updateCustomer: (newValue: number) => void;
 }
 
-const Customer = ({ order, updateCustomer }: CustomerProps) => {
+const Customer = ({ updateCustomer }: CustomerProps) => {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import "../../SCSS/components/ui/formgroup.scss";
 interface MyProps {
   labelClass: string;

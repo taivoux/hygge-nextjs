@@ -1,5 +1,5 @@
 import { DateOnMenu, Order, Product } from "@/interface/types"; // Assuming you have a shared types file
-import { toast, useToast } from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { updateMenuOnProduct, updateProductOnOrder } from "./productUtils";
 
 export const handleSubmit = async (order: Order) => {
