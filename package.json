@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run sass:build && next build",
     "start": "next start",
     "lint": "next lint",
-    "sass:watch": "sass --watch src/scss/style.scss:src/compiled/style.css"
+    "sass:watch": "sass --watch src/scss/style.scss:src/compiled/style.css",
+    "sass:build": "sass src/scss/style.scss:src/compiled/style.css --no-source-map"
   },
   "dependencies": {
     "@emotion/react": "^11.13.5",
