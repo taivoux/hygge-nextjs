@@ -53,15 +53,13 @@
     display: flex;
   }
   .search-input {
-    width: 91.666667%;
+    width: 100%;
   }
   .check-info-btn {
     width: 33.333333%;
   }
   .search-result-width {
-    //width: 573px;
-    //width: 35.813em;
-    width: 64vw;
+    width: 90vw;
     padding: 24px;
     max-height: 250px;
   }
@@ -90,14 +88,13 @@
     display: flex;
   }
   .search-input {
-    width: 91.666667%;
+    width: 100%;
   }
   .check-info-btn {
     width: 33.333333%;
   }
   .search-result-width {
-    width: 863px;
-    //width: 45vw;
+    width: 1200px;
     padding: 24px;
     max-height: 300px;
   }
@@ -115,20 +112,15 @@
   cursor: pointer;
 }
 .search-result-item {
-  margin-bottom: 10px;
   cursor: pointer;
   &:hover {
     background-color: #f2f6f4;
   }
 }
 .search-result {
-  //width: 863px;
-  //padding: 24px;
   background: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
-  margin-top: -2px;
   border-radius: 8px;
-  //max-height: 300px;
   overflow-x: hidden;
   overflow-y: auto;
 }

@@ -77,12 +77,7 @@ export interface OldCustomer {
 
 export interface UpdateOldCustomer {
   name: string;
-  //telephone: string;
   address: string;
   note_ship: string;
   note_restaurant: string;
-  //created_at: Date;
-  //modified_at: Date;
-  district_code: number | undefined;
-  ward_code: number | undefined;
 }

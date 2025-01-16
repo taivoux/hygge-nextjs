@@ -53,7 +53,7 @@ export const MenuProvider: React.FC<{ children: React.ReactNode }> = ({
       error,
       setWeekdays,
     }),
-    [weekdays, isLoading, error],
+    [weekdays, isLoading, error]
   );
 
   return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;

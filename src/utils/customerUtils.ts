@@ -8,8 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
  */
 
 export async function getOldCustomerInfo(
-  queryType: any,
-  value: any
+  queryType: string,
+  value: string
 ): Promise<OldCustomer[]> {
   if (queryType == "search_name_or_phone" && !value) {
     return [];
@@ -43,7 +43,7 @@ export async function getOldCustomerInfo(
 export async function updateOldCustomerInfo(
   currentCusId: number,
   cusInfoObj: UpdateOldCustomer
-): Promise<OldCustomer> {
+): Promise<UpdateOldCustomer> {
   const apiUrl = "http://localhost:3000/api/customer/" + currentCusId;
 
   try {
@@ -58,8 +58,6 @@ export async function updateOldCustomerInfo(
         address: cusInfoObj.address,
         note_ship: cusInfoObj.note_ship,
         note_restaurant: cusInfoObj.note_restaurant,
-        district_code: cusInfoObj.district_code,
-        ward_code: cusInfoObj.ward_code,
       }),
     });
 
