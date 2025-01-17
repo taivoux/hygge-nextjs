@@ -9,7 +9,7 @@ interface MyProps {
   selectClass: string;
   selectOptions: { ward_code: number } | { district_code: number }[];
   selectedValue: number | undefined;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => any;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SelectFormGroup: React.FC<MyProps> = ({
